@@ -11,7 +11,23 @@ class _IndexState extends State<Index>{
   Widget build(BuildContext context){
     return WillPopScope(
       child: Scaffold(
-        body: Center(child: Text('Esto empieza')),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              pinned: true,
+              snap: true,
+              floating: true,
+              expandedHeight: 160,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text('Título appBar'),
+                background: Placeholder(),
+              ),
+            ),
+            SliverFillRemaining(
+              child: Text('Init'),
+            )
+          ],
+        )
       ),
     );
   }
