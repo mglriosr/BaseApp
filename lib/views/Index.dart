@@ -26,7 +26,7 @@ class _IndexState extends State<Index>{
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              pinned: false,
+              pinned: true,
               snap: true,
               floating: true,
               expandedHeight: 120,
@@ -45,11 +45,16 @@ class _IndexState extends State<Index>{
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.black87
+                              color: Colors.red
                             ),
                             child: Center(child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                              child: Text('Promo delivery', style: TextStyle(color: Colors.white, fontSize: 12),),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(Icons.restaurant_menu, color: Colors.white,),
+                                  Text('Comida', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                ],
+                              ),
                             ))
                           ),
                         ),
@@ -58,11 +63,16 @@ class _IndexState extends State<Index>{
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.black87
+                              color: Colors.red
                             ),
                             child: Center(child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                              child: Text('Promo delivery', style: TextStyle(color: Colors.white, fontSize: 12),),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(Icons.local_hospital, color: Colors.white,),
+                                  Text('Medicina', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                ],
+                              ),
                             ))
                           ),
                         ),
@@ -71,11 +81,16 @@ class _IndexState extends State<Index>{
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.black87
+                              color: Colors.red
                             ),
                             child: Center(child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                              child: Text('Promo delivery', style: TextStyle(color: Colors.white, fontSize: 12),),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(Icons.local_offer, color: Colors.white,),
+                                  Text('Regalos', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                ],
+                              ),
                             ))
                           ),
                         ),
@@ -84,11 +99,16 @@ class _IndexState extends State<Index>{
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.black87
+                              color: Colors.red
                             ),
                             child: Center(child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                              child: Text('Promo delivery', style: TextStyle(color: Colors.white, fontSize: 12),),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(Icons.vpn_key, color: Colors.white,),
+                                  Text('Objetos', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                ],
+                              ),
                             ))
                           ),
                         ),
@@ -97,11 +117,16 @@ class _IndexState extends State<Index>{
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(3)),
-                              color: Colors.black87
+                              color: Colors.red
                             ),
                             child: Center(child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                              child: Text('Promo delivery', style: TextStyle(color: Colors.white, fontSize: 12),),
+                              child: Column(
+                                children: <Widget>[
+                                  Icon(Icons.devices_other, color: Colors.white,),
+                                  Text('Otros', style: TextStyle(color: Colors.white, fontSize: 12),),
+                                ],
+                              ),
                             ))
                           ),
                         ),
@@ -111,116 +136,150 @@ class _IndexState extends State<Index>{
               ),
             ),
             SliverFillRemaining(
-              child: Scrollbar(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black87,
-                                borderRadius: BorderRadius.all(Radius.circular(3))
+              child: ListView(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                               ),
-                              constraints: BoxConstraints(
-                                minWidth: (MediaQuery.of(context).size.width/2)-25,
-                                minHeight: 250
-                              ),
-                              child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black87,
-                                borderRadius: BorderRadius.all(Radius.circular(3))
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                               ),
-                              constraints: BoxConstraints(
-                                minWidth: (MediaQuery.of(context).size.width/2)-25,
-                                minHeight: 250
-                              ),
-                              child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black87,
-                                borderRadius: BorderRadius.all(Radius.circular(3))
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                               ),
-                              constraints: BoxConstraints(
-                                minWidth: (MediaQuery.of(context).size.width/2)-25,
-                                minHeight: 250
-                              ),
-                              child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.black87,
-                                borderRadius: BorderRadius.all(Radius.circular(3))
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                               ),
-                              constraints: BoxConstraints(
-                                minWidth: (MediaQuery.of(context).size.width/2)-25,
-                                minHeight: 250
-                              ),
-                              child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
                             ),
-                          ),
-                        ],
-                      ),
-                      // Row(
-                      //   children: <Widget>[
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Container(
-                      //         decoration: BoxDecoration(
-                      //           color: Colors.black87,
-                      //           borderRadius: BorderRadius.all(Radius.circular(3))
-                      //         ),
-                      //         constraints: BoxConstraints(
-                      //           minWidth: (MediaQuery.of(context).size.width/2)-25,
-                      //           minHeight: 250
-                      //         ),
-                      //         child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
-                      //       ),
-                      //     ),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Container(
-                      //         decoration: BoxDecoration(
-                      //           color: Colors.black87,
-                      //           borderRadius: BorderRadius.all(Radius.circular(3))
-                      //         ),
-                      //         constraints: BoxConstraints(
-                      //           minWidth: (MediaQuery.of(context).size.width/2)-25,
-                      //           minHeight: 250
-                      //         ),
-                      //         child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black87,
+                                  borderRadius: BorderRadius.all(Radius.circular(3))
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: (MediaQuery.of(context).size.width/2)-25,
+                                  minHeight: 250
+                                ),
+                                child: Center(child: Text('Categoría', style: TextStyle(color: Colors.white,))),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
             )
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.restaurant_menu),
+          child: Icon(Icons.add),
           onPressed: (){},
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
