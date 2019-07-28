@@ -1,4 +1,5 @@
-import 'package:baseapp/views/Index.dart';
+import 'package:baseapp/views/CategoriasPrincipales.dart';
+import 'package:baseapp/views/Login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,10 +11,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.red,
-        accentColor: Colors.red
+        primaryColor: Colors.blue,
+        accentColor: Colors.blue
       ),
-      home: Index(),
+      home: CategoriasPrincipales(),
     );
   }
 }
