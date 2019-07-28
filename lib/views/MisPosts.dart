@@ -1,147 +1,62 @@
-import 'package:baseapp/views/ListadoItems.dart';
-import 'package:baseapp/views/Nacionalidades.dart';
-import 'package:baseapp/views/NuevoPost.dart';
-import 'package:baseapp/views/PendientesSubir.dart';
+import 'package:baseapp/views/Visualizador.dart';
 import 'package:flutter/material.dart';
 
 
-class CategoriasPrincipales extends StatefulWidget {
+class MisPosts extends StatefulWidget {
   @override
-  State createState() => _CategoriasPrincipalesState();
+  State createState() => _MisPostsState();
 }
 
-class _CategoriasPrincipalesState extends State<CategoriasPrincipales>{
-  
+class _MisPostsState extends State<MisPosts>{
   @override
   Widget build(BuildContext context){
     final  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('Centro de documentación'),
+        title: Text('Mis Posts'),
       ),
       body: SafeArea(
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
-              child: Card(
-                  child: InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Image.asset('assets/idiomas.jpg', width: MediaQuery.of(context).size.width ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 2),
-                          child: Text('¡APRENDETHON!', style: TextStyle(fontWeight: FontWeight.bold) ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 8.0),
-                          child: Text('Aprende Quichua de la forma más divertida'),
-                        )
-                      ],
-                    ),
-                    onTap: (){},
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: ListView(
+            children: <Widget>[
+              Card(
+                child: InkWell(
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset('assets/huancavilca.png', width: 100,),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('Título', style: TextStyle( fontWeight: FontWeight.bold ),),
+                          Row(
+                            children: <Widget>[
+                              Text('Autor: '),
+                              Text('#nombreDelAutor')
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
                   ),
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Visualizador()),
+                    );
+                  },
                 ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
-              child: Card(
-                  child: InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Image.asset('assets/multimedia.jpg', width: MediaQuery.of(context).size.width ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 2),
-                          child: Text('Multimedia', style: TextStyle(fontWeight: FontWeight.bold) ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 8.0),
-                          child: Text('Audios, fotorgrafía y video'),
-                        )
-                      ],
-                    ),
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Nacionalidades()),
-                      );
-                    },
-                  ),
-                ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
-              child: Card(
-                  child: InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Image.asset('assets/biblioteca.jpg', width: MediaQuery.of(context).size.width ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 2),
-                          child: Text('Biblioteca', style: TextStyle(fontWeight: FontWeight.bold) ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 8.0),
-                          child: Text('Pueblos y nacionalidades'),
-                        )
-                      ],
-                    ),
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Nacionalidades()),
-                      );
-                    },
-                  ),
-                ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8),
-              child: Card(
-                  child: InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Image.asset('assets/otrosrepos.png', width: MediaQuery.of(context).size.width ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 2),
-                          child: Text('Otros repositorios', style: TextStyle(fontWeight: FontWeight.bold) ,),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, bottom: 8.0),
-                          child: Text('Repositorios de interés'),
-                        )
-                      ],
-                    ),
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Nacionalidades()),
-                      );
-                    },
-                  ),
-                ),
-            ),
-          ],
+              ),
+            ],
+          )
         )
       ),
+      /*
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
@@ -273,6 +188,10 @@ class _CategoriasPrincipalesState extends State<CategoriasPrincipales>{
             ),
             onTap: (){
               Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CategoriasPrincipales()),
+              );
             },
           ),
           Padding(
@@ -288,7 +207,7 @@ class _CategoriasPrincipalesState extends State<CategoriasPrincipales>{
               Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PendientesSubir()),
+                MaterialPageRoute(builder: (context) => MisPosts()),
               );
             },
           ),
@@ -334,43 +253,7 @@ class _CategoriasPrincipalesState extends State<CategoriasPrincipales>{
         ],
         ),
       ),
-      /*
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: InkWell(
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                    icon: Icon(Icons.person),
-                  ),
-                  Text('Ingresar'),
-                  ],
-                ),
-                onTap: (){},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: InkWell(
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                    icon: Icon(Icons.person_add),
-                  ),
-                  Text('Crear Cuenta')
-                  ],
-                ),
-                onTap: (){},
-              ),
-            )
-          ],
-        ),
-      ),
-      */   
+      */
     );
   }
 }

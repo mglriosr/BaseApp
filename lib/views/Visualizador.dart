@@ -1,5 +1,7 @@
+import 'package:baseapp/views/CategoriasPrincipales.dart';
 import 'package:baseapp/views/ListadoItems.dart';
 import 'package:baseapp/views/NuevoPost.dart';
+import 'package:baseapp/views/PendientesSubir.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,6 +15,7 @@ class _VisualizadorState extends State<Visualizador>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Visualizador'),
       ),
       body: SafeArea(
@@ -50,15 +53,66 @@ class _VisualizadorState extends State<Visualizador>{
           ),
         )
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NuevoPost()),
-          );
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: (){
+      //     showDialog<void>(
+      //       context: context,
+      //       barrierDismissible: false,
+      //       builder: (BuildContext context) {
+      //         return AlertDialog(
+      //           title: Text('Tipo de archivo a subir'),
+      //           content: Container(
+      //             child: Row(
+      //               mainAxisSize: MainAxisSize.max,
+      //               mainAxisAlignment: MainAxisAlignment.center,
+      //               children: <Widget>[
+      //                 IconButton(
+      //                   icon: Icon(Icons.add_a_photo),
+      //                   onPressed: (){
+      //                     Navigator.pop(context);
+      //                     Navigator.push(
+      //                       context,
+      //                       MaterialPageRoute(builder: (context) => NuevoPost()),
+      //                     );
+      //                   },
+      //                 ),
+      //                 IconButton(
+      //                   icon: Icon(Icons.audiotrack),
+      //                   onPressed: (){
+      //                     Navigator.pop(context);
+      //                     Navigator.push(
+      //                       context,
+      //                       MaterialPageRoute(builder: (context) => NuevoPost()),
+      //                     );
+      //                   },
+      //                 ),
+      //                 IconButton(
+      //                   icon: Icon(Icons.description),
+      //                   onPressed: (){
+      //                     Navigator.pop(context);
+      //                     Navigator.push(
+      //                       context,
+      //                       MaterialPageRoute(builder: (context) => NuevoPost()),
+      //                     );
+      //                   },
+      //                 )
+      //               ],
+      //             ), 
+      //           ),
+      //           actions: <Widget>[
+      //             FlatButton(
+      //               child: Text('Cancelar'),
+      //               onPressed: (){
+      //                 Navigator.pop(context);
+      //               },
+      //             )
+      //           ],
+      //         );
+      //       }
+      //     );
+      //   },
+      // ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
           height: 60,
@@ -144,6 +198,93 @@ class _VisualizadorState extends State<Visualizador>{
               ),
             ],
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+        children: <Widget>[
+          Container(
+            height: 150,
+            color: Colors.blue,
+            child: Column(
+              children: <Widget>[
+                Icon(Icons.account_circle, size: 100, color: Colors.white,),
+                Text('@username', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),),
+                Text('correo@corape.org', style: TextStyle(color: Colors.white),)
+              ],
+            ),
+          ),
+          Divider(color: Colors.white,),
+          InkWell(
+            child: Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Text('Inicio', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CategoriasPrincipales()),
+              );
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Divider(),
+          ),
+          InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Pendientes de subida', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PendientesSubir()),
+              );
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Divider(),
+          ),
+          InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Mi perfil', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),          
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Divider(),
+          ),
+          InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Configuraciones', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Divider(),
+          ),
+          InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Cerrar sesión'),
+            ),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          )
+        ],
         ),
       ),
     );
