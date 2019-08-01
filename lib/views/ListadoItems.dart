@@ -3,6 +3,7 @@ import 'package:baseapp/views/NuevoPost.dart';
 import 'package:baseapp/views/PendientesSubir.dart';
 import 'package:baseapp/views/Visualizador.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 class ListadoItems extends StatefulWidget {
@@ -20,45 +21,58 @@ class _ListadoItemsState extends State<ListadoItems>{
         automaticallyImplyLeading: false,
         title: Text('Items'),
       ),
-      body: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: ListView(
-            children: <Widget>[
-              Card(
-                child: InkWell(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset('assets/huancavilca.png', width: 100,),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Título', style: TextStyle( fontWeight: FontWeight.bold ),),
-                          Row(
-                            children: <Widget>[
-                              Text('Autor: '),
-                              Text('#nombreDelAutor')
-                            ],
+      body: RefreshIndicator(
+        child: SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: ListView(
+              children: <Widget>[
+                Card(
+                  child: InkWell(
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          //child: Image.asset('assets/huancavilca.png', width: 100,),
+                          child: CachedNetworkImage(
+                            imageUrl: "http://via.placeholder.com/150x150" ?? '',
+                            placeholder: (context, url) => new CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => new Icon(Icons.error),
                           ),
-                        ],
-                      )
-                    ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Título', style: TextStyle( fontWeight: FontWeight.bold ),),
+                            Row(
+                              children: <Widget>[
+                                Text('Autor: '),
+                                Text('#nombreDelAutor')
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Visualizador()),
+                      );
+                    },
                   ),
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Visualizador()),
-                    );
-                  },
                 ),
-              ),
-            ],
+              ],
+            )
           )
-        )
+        ),
+        onRefresh: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ListadoItems()),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

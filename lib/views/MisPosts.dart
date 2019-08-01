@@ -1,8 +1,16 @@
+import 'dart:io';
+
 import 'package:baseapp/views/Visualizador.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 
 
 class MisPosts extends StatefulWidget {
+  final file;
+  final status;
+  final titulo;
+
+  const MisPosts({Key key, this.titulo, this.status, this.file}) : super(key: key);
   @override
   State createState() => _MisPostsState();
 }
@@ -16,45 +24,60 @@ class _MisPostsState extends State<MisPosts>{
       appBar: AppBar(
         title: Text('Mis Posts'),
       ),
-      body: SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: ListView(
-            children: <Widget>[
-              Card(
-                child: InkWell(
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset('assets/huancavilca.png', width: 100,),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Título', style: TextStyle( fontWeight: FontWeight.bold ),),
-                          Row(
-                            children: <Widget>[
-                              Text('Autor: '),
-                              Text('#nombreDelAutor')
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
+      body: RefreshIndicator(
+        child: SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: ListView(
+              children: <Widget>[
+                Card(
+                  child: InkWell(
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.file(widget.file, width: 100,),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(widget.titulo, style: TextStyle( fontWeight: FontWeight.bold ),),
+                            Row(
+                              children: <Widget>[
+                                Text(widget.status, style: widget.status == 'Subido' ? TextStyle(color: Colors.green) : TextStyle(color: Colors.grey) )
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Visualizador()),
+                      );
+                    },
                   ),
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Visualizador()),
-                    );
-                  },
                 ),
-              ),
-            ],
+              ],
+            )
           )
-        )
+        ),
+        onRefresh: () async {
+          var connectivityResult = await (Connectivity().checkConnectivity());
+          if(connectivityResult == ConnectivityResult.none){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MisPosts(file: widget.file, status: 'Esperando red',)),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MisPosts(file: widget.file, status: 'Subido',)),
+            );
+          }
+        },
       ),
       /*
       floatingActionButton: FloatingActionButton(

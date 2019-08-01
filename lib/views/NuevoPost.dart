@@ -17,6 +17,8 @@ class NuevoPost extends StatefulWidget {
 class _NuevoPostState extends State<NuevoPost>{
   FlutterSound flutterSound = new FlutterSound();
   File _image;
+  File _video;
+  var _titulo;
 
       Future getImage() async {
         var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -26,10 +28,10 @@ class _NuevoPostState extends State<NuevoPost>{
         });
       }
       Future getVideo() async {
-        var image = await ImagePicker.pickVideo(source: ImageSource.camera);
+        var video = await ImagePicker.pickVideo(source: ImageSource.camera);
 
         setState(() {
-          _image = image;
+          _video = video;
         });
       }
       GlobalKey<FormState> _key = GlobalKey();
@@ -37,7 +39,7 @@ class _NuevoPostState extends State<NuevoPost>{
       Widget build(BuildContext context){
         return Scaffold(
           appBar: AppBar(
-            title: Text('SUBIR '+widget.tipoDocumento.toString().toUpperCase() ),
+            title: Text('Subir '+widget.tipoDocumento ),
           ),
           body: SafeArea(
             child: ListView(
@@ -81,6 +83,8 @@ class _NuevoPostState extends State<NuevoPost>{
                                 icon: Icon(Icons.add_a_photo, size: 36,),
                                 onPressed: (){
                                   getImage();
+                                  print('Path img');
+                                  print(_image);
                                 },
                               ),
                               Padding(
@@ -88,15 +92,15 @@ class _NuevoPostState extends State<NuevoPost>{
                                 child: IconButton(
                                   tooltip: 'Grabar video',
                                   icon: Icon(Icons.video_call, size: 40,),
-                                  onPressed: (){
-                                    getVideo();
-                                  },
+                                  // onPressed: (){
+                                  //   getVideo();
+                                  // },
                                 ),
                               ),
                               IconButton(
                                 tooltip: 'Subir archivo',
                                 icon: Icon(Icons.cloud_upload, size: 40,),
-                                onPressed: (){},
+                                //onPressed: (){},
                               ),
                             ],
                           ) : Row(
@@ -117,7 +121,15 @@ class _NuevoPostState extends State<NuevoPost>{
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 18.0),
-                                child: TextField(
+                                child: TextFormField(
+                                  validator: (text) {
+                                    if (text.length == 0) {
+                                      return "(*) Campo obligatorio";
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (text) => _titulo = text,
+
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Título'
@@ -323,20 +335,26 @@ class _NuevoPostState extends State<NuevoPost>{
             child: Icon(Icons.save),
             onPressed: () async {
               var connectivityResult = await (Connectivity().checkConnectivity());
-              if(connectivityResult == ConnectivityResult.none){
-                print('Sin internet');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PendientesSubir()),
-                );
-              } else{
-                print('Con internet');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MisPosts()),
-                );
+              if (_key.currentState.validate()){
+                _key.currentState.save();
+                print(_titulo);
+                if(connectivityResult == ConnectivityResult.none){
+                  print('Sin internet');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MisPosts(file: _image ?? '', titulo: _titulo, status: 'Esperando red',)),
+                  );
+                } else{
+                  print('Con internet');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MisPosts(file: _image ?? '', titulo: _titulo, status: 'Subido',)),
+                  );
+                }
               }
-            },
+            }
+              
+              
           ),
         );
       }

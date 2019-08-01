@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 
 
 class PendientesSubir extends StatefulWidget {
+  final file;
+
+  const PendientesSubir({Key key, this.file}) : super(key: key);
   @override
   State createState() => _PendientesSubirState();
 }
@@ -31,7 +34,7 @@ class _PendientesSubirState extends State<PendientesSubir>{
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset('assets/huancavilca.png', width: 100,),
+                        child: Image.file(widget.file, width: 100,),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
